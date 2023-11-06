@@ -86,7 +86,7 @@ namespace scrumptious{
 			// Pre: a vector object is passed in
 			// Post: creates a new object based on the vector object passed in
 			//*************************************************************************
-			Vector& operator=(const T &v){
+			Vector &operator=(const T &v){
 				
 				T *temp = new T[v.size]; // create a new vector
 				for(int i = 0; i < v.size; i++){
@@ -268,7 +268,7 @@ namespace scrumptious{
 				// insert a new element v before p
 				// make sure we have space
 				if (space == size){
-					reserve(size == 0 ? 8 : 2 * size); // reserve space for 2 * size elements if size > 0
+					reserve(size == 0 ? 8 : 2 * space); // reserve space for 2 * size elements if size > 0
 				}
 
 				// the place to put the value
