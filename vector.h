@@ -34,6 +34,9 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <stdexcept>
+#include <iostream>
+#include <limits>
 
 namespace scrumptious{
 	template <class T>
@@ -169,12 +172,35 @@ namespace scrumptious{
 			// Post: reserves space for the new allocation passed in
 			//*************************************************************************
 			void reserve(int newAlloc){
-				// never decrease allocation
-				// allocate new space
-
 				
-				// copy old elements
-				// deallocate old space
+				if(newAlloc < 0) { // exception handling for negative allocation
+					throw std::invalid_argument("New allocation size cannot be negative");
+				}
+
+				if(newAlloc > std::numeric_limits<int>::max()){ // exception handling for overflow
+					throw std::overflow_error("New allocation size is too large");
+				}
+
+				if(newAlloc > size){
+					T* temp;
+					try{ // exception handling for bad_alloc
+						temp = new T[newAlloc]; // create a temporary array of size `newAlloc`
+					} catch (std::bad_alloc &ba) {
+						std::cerr << "bad_alloc caught: " << ba.what() << '\n';
+						return;
+					}
+					// copy old elements
+					for(int i = 0; i < size; i++){
+						temp[i] = vector[i]; // copy each element of the vector
+					}
+
+					// deallocate old space
+					delete[] vector; // delete the old vector
+					size = newAlloc; // assign the new size to the old size
+					vector = temp; // assign the new vector to the old vector
+				}
+					
+				
 			}
 			//*************************************************************************
 			// Iterator functions
@@ -236,13 +262,26 @@ namespace scrumptious{
 			// Post: inserts the new element at the iterator position
 			//*************************************************************************
 			iterator insert(iterator p, const T &v){
+				if(p < vector || p > vector + space){
+					throw std::out_of_range("Iterator out of range"); // exception handling for out of range iterator
+				}
 				// insert a new element v before p
 				// make sure we have space
+				if (space == size){
+					reserve(size == 0 ? 8 : 2 * size); // reserve space for 2 * size elements if size > 0
+				}
+
 				// the place to put the value
+				int index = p - vector; // convert iterator to index
 				// copy element one position to the right
+				for(int i = size; i > index; i--){
+					vector[i] = vector[i - 1]; // copy element one position to the right
+				}
 				// insert the new value at position p
+				vector[index] = v; // insert the new value at position p
+				size++; // increase the size by 1
 				// return a pointer to the newly inserted element
-				return nullptr; // temporary, remove and replace
+				return vector + index; // return a pointer to the newly inserted element
 			}
 			//*************************************************************************
 			// erase function
