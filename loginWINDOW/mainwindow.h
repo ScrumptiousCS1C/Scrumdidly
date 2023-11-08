@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include "mainscreen.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,7 +20,6 @@ public:
 private slots:
 
     void on_LOGINBUTTON_clicked();
-
     void on_CANCELBUTTON_clicked();
 
 private:

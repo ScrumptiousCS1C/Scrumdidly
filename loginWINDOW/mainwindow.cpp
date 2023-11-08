@@ -21,6 +21,8 @@ void MainWindow::on_LOGINBUTTON_clicked()
     if (UserName == "Scrumptious" && Password == "CS1C")
     {
         QMessageBox::information(this, "ScrumptiousCS1C", "Login Successful!");
+        MainScreen *mainscreen = new MainScreen();
+        mainscreen->show();
     }
     else
     {
