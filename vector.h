@@ -125,7 +125,7 @@ namespace scrumptious{
 			// Pre: None
 			// Post: returns the size of the vector
 			//*************************************************************************
-			int size() const {return size;} // size function
+			int sizeOf() const {return size;} // size function
 			//*************************************************************************
 			// capacity function
 			//_________________________________________________________________________
