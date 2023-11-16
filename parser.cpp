@@ -1,68 +1,126 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <QMap>
+#include "parser.h"
 
-using namespace std;
+Shape* ReadLine(std::ifstream&, int id);
+Shape* ReadPolyLine(std::ifstream&, int id);
+Shape* ReadPolygon(std::ifstream&, int id);
+Shape* ReadRectangle(std::ifstream&, int id);
+Shape* ReadSquare(std::ifstream&, int id);
+Shape* ReadEllipse(std::ifstream&, int id);
+Shape* ReadCircle(std::ifstream&, int id);
+Shape* ReadText(std::ifstream&, int id);
 
-void parser()
+Qt::GlobalColor     getColor(const std::string&);
+Qt::PenStyle     getPenStyle(const std::string&);
+Qt::PenCapStyle     getCapStyle(const std::string&);
+Qt::PenJoinStyle     getPenJoinStyle(const std::string&);
+Qt::BrushStyle     getBrushStyle(const std::string&);
+QFont::Weight     getFontWeight(const std::string&);
+
+const QMap<ShapeNames, std::string> INPUT_SHAPE_NAMES {
+    {LINE, "Line"},
+    {POLYLINE, "Polyline"},
+    {POLYGON, "Polygon"},
+    {RECTANGLE, "Rectangle"},
+    {SQUARE, "Square"},
+    {ELLIPSE, "Ellipse"},
+    {CIRCLE, "Circle"},
+    {TEXT, "Text"},
+};
+
+scrumptious::Vector<Shape*> LoadFile()
 {
-    string temp;
-    ifstream shapesFile("shapes.txt");
-    while (shapesFile)
+    std::ifstream inFile;
+    inFile.open("shapes.txt");
+
+    scrumptious::Vector<Shape*> myShapes;
+    int id;
+
+    while(inFile)
     {
-        getline(shapesFile, temp, ':');
+        std::string typeStr;
+        ShapeNames type;
+        inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
+        inFile >> id;
 
-        if (temp == "ShapeId")
-        { // ShapeId: # [int, unique]
-            // shapesFile >> ShapeID;
-        } else if (temp == "ShapeType")
-        { // ShapeType: Line, Polyline, Polygon, Rectangle, Square[rectangle, l=w], Ellipse, Circle[ellipse, a=b], Text
-            // getline(shapesFile, ShapeType, '\n');
-        } else if (temp == "ShapeDimensions")
+        inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
+        inFile >> typeStr;
+        type = INPUT_SHAPE_NAMES.key(typeStr);
+
+        if(inFile.eof()) {
+            break;
+        }
+
+        switch(type)
         {
-
-        } else if (temp == "PenColor")
-        { // PenColor: white, black, red, green, blue, cyan, magenta, yellow, gray [Qt::GlobalColor enum]
-
-        } else if (temp == "PenWidth")
-        { // PenWidth: 0 - 20 [int]
-            // shapesFile >> PenWidth;
-        } else if (temp == "PenStyle")
-        { // PenStyle: NoPen, SolidLine, DashLine, DotLine, DashDotLine, DashDotDotLine [Qt::PenStyle enum]
-
-        } else if (temp == "PenCapStyle")
-        { // PenCapStyle: FlatCap, SquareCap, RoundCap [Qt::PenCapStyle enum]
-
-        } else if (temp == "PenJoinStyle")
-        { // PenJoinStyle: MiterJoin, BevelJoin, RoundJoin [Qt::PenJoinStyle enum]
-
-        } else if (temp == "BrushColor")
-        { // BrushColor: white, black, red, green, blue, cyan, magenta, yellow, gray [Qt::GlobalColor enum]
-
-        } else if (temp == "BrushStyle")
-        { // BrushStyle: SolidPattern, HorPattern, VerPattern, NoBrush [Qt::BrushStyle enum]
-
-        } else if (temp == "TextString")
-        { // TextString: text to be displayed [string]
-
-        } else if (temp == "TextColor")
-        { // TextColor: white, black, red, green, blue, cyan, magenta, yellow, gray [Qt::GlobalColor enum]
-
-        } else if (temp == "TextAlignment")
-        { // TextAlignment: AlignLeft, AlignRight, AlignTop, AlignBottom, AlignCenter [Qt::AlignmentFlag enum]
-
-        } else if (temp == "TextPointSize")
-        { // TextPointSize: -1 to 50 [int]
-            // shapesFile >> TextPointSize;
-        } else if (temp == "TextFontFamily")
-        { // TextFontFamily: Comic Sans MS, Courier, Helvetica, Times [string]
-
-        } else if (temp == "TextFontStyle")
-        { // TextFontStyle: StyleNormal, StyleItalic, StyleOblique [QFont::Style enum]
-
-        } else if (temp == "TextFontWeight")
-        { // TextFontWeight: Thin, Light, Normal, Bold [QFont::Weight enum]
-
+        case LINE:
+            myShapes.push_back(ReadLine(inFile, id));
+            break;
+        case POLYLINE:
+            myShapes.push_back(ReadPolyLine(inFile, id));
+            break;
+        case POLYGON:
+            myShapes.push_back(ReadPolygon(inFile, id));
+            break;
+        case RECTANGLE:
+            myShapes.push_back(ReadRectangle(inFile, id));
+            break;
+        case SQUARE:
+            myShapes.push_back(ReadSquare(inFile, id));
+            break;
+        case ELLIPSE:
+            myShapes.push_back(ReadEllipse(inFile, id));
+            break;
+        case CIRCLE:
+            myShapes.push_back(ReadCircle(inFile, id));
+            break;
+        case TEXT:
+            myShapes.push_back(ReadText(inFile, id));
+            break;
         }
     }
 }
+
+Shape* ReadLine(std::ifstream&, int id)
+{
+
+}
+
+Shape* ReadPolyLine(std::ifstream&, int id)
+{
+
+}
+
+Shape* ReadPolygon(std::ifstream&, int id)
+{
+
+}
+
+Shape* ReadRectangle(std::ifstream&, int id)
+{
+
+}
+
+Shape* ReadSquare(std::ifstream&, int id)
+{
+
+}
+
+Shape* ReadEllipse(std::ifstream&, int id)
+{
+
+}
+
+Shape* ReadCircle(std::ifstream&, int id)
+{
+
+}
+
+Shape* ReadText(std::ifstream&, int id)
+{
+
+}
+
