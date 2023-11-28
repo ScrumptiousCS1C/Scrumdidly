@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <QMap>
+#include <limits>
 #include "parser.h"
 
 Shape* ReadLine(std::ifstream&, int id);
@@ -31,7 +32,7 @@ const QMap<ShapeNames, std::string> INPUT_SHAPE_NAMES {
     {TEXT, "Text"},
 };
 
-scrumptious::Vector<Shape*> LoadFile()
+scrumptious::Vector<Shape*> LoadFile() // Open the file
 {
     std::ifstream inFile;
     inFile.open("shapes.txt");
