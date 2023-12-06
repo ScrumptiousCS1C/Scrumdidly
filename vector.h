@@ -136,11 +136,11 @@ namespace scrumptious{
 		// Post: Deletes the vector object
 		//*************************************************************************
 		~Vector() {
-			// !! sierra
+			// 
 			for (auto i = this->begin(); i != this->end(); ++i) {
 				delete i; // delete each element of the vector
 			}
-			// !! sierra
+			//
 			vector = nullptr; // set the vector to nullptr
 			delete []vector;}
 			 // delete the vector
@@ -326,7 +326,7 @@ namespace scrumptious{
 			}
 
 			// the place to put the value
-			int index = p - vector; // convert iterator to index
+			int index = &vector[space-1] - p; // convert iterator to index
 			// copy element one position to the right
 			// for (auto it = end(); it != p; --it){
 			// *it = *(it - 1); // copy element one position to the right
