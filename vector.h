@@ -192,12 +192,20 @@ namespace scrumptious{
 		//*************************************************************************
 		void resize(int newSize){
 
-			reserve(newSize); // reserve space for the new size
-
-			for(int i = size; i < newSize; i++){
-				vector[i] = T(0); // initialize the new elements to default value
+			if(newSize > space){
+				reserve(newSize); // reserve space for the new size
+			}else if(newSize < space){
+				for (int i = newSize; i < size; i++){
+					delete &vector[i];  // initialize templated elements to default value
+				}
+				T *temp = new T[newSize]; // create a temporary array of size `newSize`
+				for(int i = 0; i < newSize; i++){
+					temp[i] = vector[i]; // copy each element of the vector
+				}
+				delete []vector; // delete the old vector
+				vector = temp; // update vector to point to the new block of memory
+				size = newSize; // assign the new size to the old size
 			}
-			size = newSize; // assign the new size to the old size
 		}
 		//*************************************************************************
 		// push_front function
@@ -226,11 +234,8 @@ namespace scrumptious{
 		//*************************************************************************
 		void push_back(T newElement){
 			// increases vector size by one; initialize the new element with `newElement`
-			if(space == 0){
-				reserve(8); // reserve space for 8 elements
-			}
-			else if(size == space){
-				reserve(2 * space); // reserve space for 2 * space elements
+			if(space == 0 || size == space){
+				reserve(1); // reserve space for 8 elements
 			}
 			vector[size] = newElement; // initialize the new element with `newElement`
 			size++; // increase the size by 1
@@ -316,23 +321,23 @@ namespace scrumptious{
 		// Post: inserts the new element at the iterator position
 		//*************************************************************************
 		iterator insert(iterator p, const T &v){
-			if(p < vector || p > vector + space){
+			if(p < vector || p > vector + size){
 				throw std::out_of_range("Iterator out of range"); // exception handling for out of range iterator
 			}
 			// insert a new element v before p
 			// make sure we have space
 			if (space == size){
-				reserve(size == 0 ? 8 : 2 * space); // reserve space for 2 * size elements if size > 0
+				reserve(space + 1); // reserve space for 1 more element
 			}
 
 			// the place to put the value
-			int index = &vector[space-1] - p; // convert iterator to index
+			int index = p - vector; // convert iterator to index
 			// copy element one position to the right
 			// for (auto it = end(); it != p; --it){
 			// *it = *(it - 1); // copy element one position to the right
 			// 
-			for(int i = size; i > index; i--){
-				vector[i] = vector[i - 1]; // copy element one position to the right
+			for(auto i = end() - 1; i != p; i--){
+				*i = *(i - 1); // copy element one position to the right
 			}
 			// insert the new value at position p
 			vector[index] = v; // insert the new value at position p
