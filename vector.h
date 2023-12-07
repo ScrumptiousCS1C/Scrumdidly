@@ -63,7 +63,11 @@ namespace scrumptious{
 		// Pre: None
 		// Post: Creates a vector with a default size of 0 and space of 0
 		//*************************************************************************
-		Vector() : size{0}, space{MAX_SIZE}, vector{new T [MAX_SIZE]}  {} // inline MIL
+		Vector() : size{0}, space{MAX_SIZE}, vector{new T [MAX_SIZE]}  {
+			for(int i = 0; i < MAX_SIZE; i++){
+				vector[i] = T(); // initialize templated elements to default value
+			}
+		} // inline MIL
 		//*************************************************************************
 		// Overloaded Constructor (alternate constructor)
 		//_________________________________________________________________________
@@ -71,7 +75,7 @@ namespace scrumptious{
 		// Post: Creates a vector of size `n` and space `n`
 		//*************************************************************************
 		explicit Vector(int n) : size{n}, space{n}, vector{new T [n]} {
-			for(int i = 0; i < size; i++){
+			for(int i = 0; i < n; i++){
 				vector[i] = T(); // initialize templated elements to default value
 			}
 		}
@@ -81,7 +85,7 @@ namespace scrumptious{
 		// Pre: a vector object is passed in
 		// Post: Creates a deep copy of the vector object passed in
 		//*************************************************************************
-		Vector(const T &v) : size{v.size}, space{v.space}, vector{new T[v.size]}{
+		Vector(const Vector<T> &v) : size{v.size}, space{v.space}, vector{new T[v.size]}{
 			for(int i = 0; i < size; i++){
 				vector[i] = v.vector[i]; // copy each element of the vector
 			}
@@ -89,10 +93,10 @@ namespace scrumptious{
 		//*************************************************************************
 		// Move Constructor
 		//_________________________________________________________________________
-		Vector(T&& v) noexcept : size{v.size}, space{v.space}{
+		Vector(Vector<T>&& v) noexcept : size{v.size}, space{v.space}{
 			//vector{new T[size]}{
 			// Steal the resources from the source object
-			*vector = std::move(v); // move assignment operator
+			vector = std::move(v.vector); // move assignment
 			v.size = 0;
 			v.vector = nullptr;
 			v.space = 0;
@@ -137,12 +141,11 @@ namespace scrumptious{
 		//*************************************************************************
 		~Vector() {
 			// 
-			for (auto i = this->begin(); i != vector + size; ++i) {
-				delete i; // delete each element of the vector
-			}
 			//
+			delete []vector;
+			size = 0;
 			vector = nullptr; // set the vector to nullptr
-			delete []vector;}
+			}
 			 // delete the vector
 		//*************************************************************************
 		// access reference operator
@@ -376,7 +379,7 @@ namespace scrumptious{
 			// insert a new element elem before p
 			// make sure we have space
 			if (space == size){
-				reserve(size == 0 ? 8 : 2 * space); // reserve space for 2 * size elements if size > 0
+				reserve(1); // reserve space for 2 * size elements if size > 0
 			}
 
 			// the place to put the value
@@ -402,7 +405,7 @@ namespace scrumptious{
 			// insert a new element elem after p
 			// make sure we have space
 			if (space == size){
-				reserve(size == 0 ? 8 : 2 * space); // reserve space for 2 * size elements if size > 0
+				reserve(1); // reserve space for 2 * size elements if size > 0
 			}
 
 			// the place to put the value
@@ -412,10 +415,10 @@ namespace scrumptious{
 				vector[i] = vector[i - 1]; // copy element one position to the right
 			}
 			// insert the new value at position p
-			vector[index + 1] = elem; // insert the new value at position p
+			vector[index] = elem; // insert the new value at position p
 			size++; // increase the size by 1
 			// return a pointer to the newly inserted element
-			return vector + index + 1; // return a pointer to the newly inserted element
+			return vector + index; // return a pointer to the newly inserted element
 		}
 		//*************************************************************************
 		// get_iterator(int n)
