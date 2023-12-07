@@ -2,7 +2,7 @@
 
 int main(){
 
-	std::unique_ptr<scrumptious::Vector<int>> v = std::make_unique<scrumptious::Vector<int>>();	
+	scrumptious::Vector<int> *v =  new scrumptious::Vector<int>();	
 
 	// Test push_back
 	std::cout << "Testing push_back\n";
@@ -19,12 +19,12 @@ int main(){
 
 	// Test copy constructor 
 
-	std::unique_ptr<scrumptious::Vector<int>> v2 = std::make_unique<scrumptious::Vector<int>>(*v); 
+	scrumptious::Vector<int> *v2 = new  scrumptious::Vector<int>(*v); 
 
 	std::cout << "Testing copy constructor\n" << *v2 << "\n";
 	
 	// Test assignment operator
-	std::unique_ptr<scrumptious::Vector<int>> v3 = std::make_unique<scrumptious::Vector<int>>();
+	scrumptious::Vector<int> *v3 = new  scrumptious::Vector<int>();
 
 	*v3 = *v2;
 
@@ -35,7 +35,7 @@ int main(){
 	std::cout << "Testing size\n" << v->sizeOf() << "\n";
 
 	// Test move constructor
-	std::unique_ptr<scrumptious::Vector<int>> v4 = std::make_unique<scrumptious::Vector<int>>(std::move(*v3));
+	scrumptious::Vector<int> *v4 = new scrumptious::Vector<int>(std::move(*v3));
 
 	// Test contents of v4
 	std::cout << "Testing move constructor\n" << *v4 << "\n";
@@ -45,21 +45,22 @@ int main(){
 
 	// test iterators
 	std::cout << "Testing iterators\n" << v->begin() << " " << v->end() << "\n";
+	std::cout << "should have printed: " << *v->begin() << " " << *v->end() << "\n";
 	// Test insert 
 	v->insert(v->begin(), 10);
 
 	std::cout << "Testing insert\n" << *v << "\n";
 	
 	// test insert
-	v->insert(v->end(), 13);
+	v->insert(v->end()-1, 13);
 
-	std::cout << "Testing insert\n" << *v << "\n";
+	std::cout << "Testing insert after inserting 13\n" << *v << "\n";
 
 	// test reserve/resize 
 	v->resize(20);
 
 	std::cout << "Testing resize\n" << v->sizeOf() << "\n";
-
+	std::cout << "Testing space of vector\n" << v->capacity() << "\n";
 	std::cout << *v << "\n";
 
 	// test get_iterator 
@@ -80,6 +81,12 @@ int main(){
 	v->insert(v->get_iterator(3), 16);
 
 	std::cout << "Testing insert after\n" << *v << "\n";
+
+	// delete pointers
+	delete v;
+	delete v2;
+	delete v3;
+	delete v4;
 
 	return 0;
 }
