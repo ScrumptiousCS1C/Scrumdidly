@@ -1,6 +1,10 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <QMap>
+#include "vector.h"
+#include "Shape.h"
+
 enum ShapeNames
 {
     LINE      = 1,
