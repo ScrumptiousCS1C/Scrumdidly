@@ -11,8 +11,8 @@
 #include <Qt>
 #include <QRect>
 #include <string>
+#include "Vector.h"
 #include <fstream>
-#include "vector.h"
 
 class Shape {
 public:
@@ -145,6 +145,12 @@ public:
     void setBrushColor(const Qt::BrushStyle style) {painter->setBrush(style);}
 
 
+    void setFont(QFont font) {
+        painter->setFont(font);
+    }
+
+
+    ;
 
     //**********************************************************************
     // Functionality
@@ -197,3 +203,5 @@ protected:
 };
 
 #endif // SHAPE_H
+
+

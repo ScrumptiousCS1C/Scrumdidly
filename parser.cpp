@@ -3,6 +3,7 @@
 #include <string>
 #include <QMap>
 #include <limits>
+#include <QDebug>
 #include "parser.h"
 #include "Line.h"
 #include "Rectangle.h"
@@ -46,22 +47,37 @@ scrumptious::Vector<Shape*> LoadFile() // Open the file
         std::perror("Reason");
     }
 
+    // Loop to go through each shape in text
     while(inFile)
     {
-            int id;
+        // Declaring shape id and shape type variables
+        int id;
         std::string typeStr;
         ShapeNames type;
+
+        // Get id from text file
         inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
         inFile >> id;
 
+        qInfo() << "This is the id: " << id;
+
+        // Get shape type from text file
         inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
         inFile >> typeStr;
+
+        qInfo() << "This is the type string: " << typeStr;
+
+        // Convert shape type from string to enum ShapeNames
         type = INPUT_SHAPE_NAMES.key(typeStr);
+
+        qInfo() << "This is the type enum: " << type;
 
         if(inFile.eof()) {
             break;
         }
 
+        // Go to correct shape type based on type found and call read functions to create a
+        // shape class of that type. i.e. ReadLine produces a line class
         switch(type)
         {
         case LINE:
@@ -110,30 +126,47 @@ Shape* ReadLine(std::ifstream& inFile, int id)
     inFile.get();
     inFile >> y2;
 
+    qInfo() << x1 << " " << y1 << " " << x2 << " " << y2;
     inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
-    getline(inFile, color);
+    inFile >> color;
+
+    qInfo() << color << getColor(color);
 
     inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
     inFile >> width;
+    qInfo() << width;
 
     inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
-    getline(inFile, style);
+    inFile >> style;
+    qInfo() << style << getPenStyle(style);
 
     inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
-    getline(inFile, cap);
+    inFile >> cap;
+
+    qInfo() << cap << getCapStyle(cap);
 
     inFile.ignore(std::numeric_limits<std::streamsize>::max(), ':');
-    getline(inFile, join);
+    inFile >> join;
+    qInfo() << join << getPenJoinStyle(join);
 
     QPoint p1(x1, y1);
     QPoint p2(x2, y2);
 
-    QBrush brush(getColor(color));
-    QPen   pen(brush, width, getPenStyle(style), getCapStyle(cap), getPenJoinStyle(join));
+    qInfo() << p1 << p2;
+
+    QPen pen(getColor(color));
+    pen.setWidth(width);
+    pen.setStyle(getPenStyle(style));
+    pen.setCapStyle(getCapStyle(cap));
+    pen.setJoinStyle(getPenJoinStyle(join));
 
     Line *line = new Line(p1, p2);
-    line->setBrush(brush);
-    line->setPen(pen);
+
+    qInfo() << "Before";
+
+    // line->setPen(pen);
+
+    qInfo() << "After";
 
     return line;
 }

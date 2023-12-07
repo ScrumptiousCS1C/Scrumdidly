@@ -14,15 +14,15 @@ int main(int argc, char **argv)
 
     scrumptious::Vector<Shape*> myShapes = LoadFile();
 
-    QPoint p1(1, 11);
-    QPoint p2(11, 1);
-    Line *some = new Line(p1, p2);
-    some->setId(5);
-    myShapes.push_back(some);
+//    QPoint p1(1, 11);
+//    QPoint p2(11, 1);
+//    Line *some = new Line(p1, p2);
+//    some->setId(5);
+//    myShapes.push_back(some);
 
     QLabel* label = new QLabel(&mainWindow);
 
-    std::string str = std::to_string(myShapes[0]->getId()) + "\n" + "I hate Qt";
+    std::string str = std::to_string(myShapes[0]->getId()) + "<-- Shape ID";
     label->setText(QString::fromStdString(str));
 
     // Set the label as the central widget of the main window
