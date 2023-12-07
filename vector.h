@@ -41,7 +41,7 @@
 #include <limits>
 #include <memory>
 
-#define MAX_SIZE 100
+#define MAX_SIZE 10
 
 namespace scrumptious{
 	template <class T>
@@ -137,7 +137,7 @@ namespace scrumptious{
 		//*************************************************************************
 		~Vector() {
 			// 
-			for (auto i = this->begin(); i != this->end(); ++i) {
+			for (auto i = this->begin(); i != vector + size; ++i) {
 				delete i; // delete each element of the vector
 			}
 			//
@@ -300,7 +300,7 @@ namespace scrumptious{
 			if(size == 0){
 				return nullptr;
 			}
-			return &vector[size]; // return an iterator to the last element
+			return &vector[size + 1]; // return an iterator to the last element
 		}
 		//*************************************************************************
 		// const end function
@@ -312,7 +312,7 @@ namespace scrumptious{
 			if(size == 0){
 				return nullptr;
 			}
-			return &vector[size]; // return a const iterator to the last element
+			return &vector[size+1]; // return a const iterator to the last element
 		}
 		//*************************************************************************
 		// insert function
@@ -337,13 +337,13 @@ namespace scrumptious{
 			// *it = *(it - 1); // copy element one position to the right
 			// 
 			for(auto i = end() - 1; i != p; i--){
-				*i = *(i - 1); // copy element one position to the right
+				*i = *(i - 1); // copy elements one position to the right
 			}
 			// insert the new value at position p
 			vector[index] = v; // insert the new value at position p
 			size++; // increase the size by 1
 			// return a pointer to the newly inserted element
-			return vector + index; // return a pointer to the newly inserted element
+			return &vector[index]; // return a pointer to the newly inserted element
 		}
 		//*************************************************************************
 		// erase function
