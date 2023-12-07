@@ -2,13 +2,22 @@
 <ui version="4.0">
  <class>LoginWindow</class>
  <widget class="QMainWindow" name="LoginWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>573</width>
-    <height>373</height>
+    <width>559</width>
+    <height>240</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,9 +26,9 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>30</y>
-      <width>471</width>
+      <x>0</x>
+      <y>-10</y>
+      <width>551</width>
       <height>271</height>
      </rect>
     </property>
@@ -29,36 +38,36 @@
     <widget class="QLabel" name="userLABEL">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>290</x>
        <y>40</y>
-       <width>151</width>
+       <width>111</width>
        <height>51</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>20</pointsize>
+       <pointsize>13</pointsize>
        <italic>false</italic>
        <bold>true</bold>
        <underline>false</underline>
       </font>
      </property>
      <property name="text">
-      <string>User Name:</string>
+      <string>Username:</string>
      </property>
     </widget>
     <widget class="QLabel" name="passLABEL">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>100</y>
+       <x>290</x>
+       <y>90</y>
        <width>151</width>
        <height>51</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>20</pointsize>
+       <pointsize>13</pointsize>
        <italic>false</italic>
        <bold>true</bold>
        <underline>false</underline>
@@ -71,30 +80,30 @@
     <widget class="QLineEdit" name="userEDIT">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>50</y>
-       <width>241</width>
-       <height>41</height>
+       <x>380</x>
+       <y>60</y>
+       <width>141</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>15</pointsize>
+       <pointsize>11</pointsize>
       </font>
      </property>
     </widget>
     <widget class="QLineEdit" name="passEDIT">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>380</x>
        <y>110</y>
-       <width>241</width>
-       <height>41</height>
+       <width>141</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>15</pointsize>
+       <pointsize>11</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -105,8 +114,8 @@
     <widget class="QPushButton" name="LOGINBUTTON">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>190</y>
+       <x>280</x>
+       <y>160</y>
        <width>111</width>
        <height>51</height>
       </rect>
@@ -124,8 +133,8 @@
     <widget class="QPushButton" name="CANCELBUTTON">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>190</y>
+       <x>410</x>
+       <y>160</y>
        <width>111</width>
        <height>51</height>
       </rect>
@@ -145,23 +154,97 @@
       <string>CANCEL</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_pic">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>281</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>20</y>
-       <width>371</width>
+       <x>290</x>
+       <y>10</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="text">
+      <string>case sensitive</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>19</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>user:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>39</y>
+       <width>81</width>
        <height>16</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <italic>true</italic>
-       <underline>true</underline>
+       <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string>(User Name is &quot;Scrumptious&quot; and Password is &quot;CS1C&quot;) (- case sensitive)</string>
+      <string>pass:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>19</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>'Scrumptious'</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>39</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>'CS1C'</string>
      </property>
     </widget>
    </widget>
@@ -171,7 +254,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>573</width>
+     <width>559</width>
      <height>21</height>
     </rect>
    </property>

@@ -1,11 +1,14 @@
 #include "loginwindow.h"
 #include "./ui_loginwindow.h"
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
+    QPixmap pix(":/images/logo.png");
+    ui->label_pic->setPixmap(pix.scaled(281,221, Qt::KeepAspectRatio));
 }
 
 MainWindow::~MainWindow()

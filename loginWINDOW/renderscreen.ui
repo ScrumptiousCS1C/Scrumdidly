@@ -17,7 +17,7 @@
    <widget class="QWidget" name="canvas" native="true">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>160</x>
       <y>100</y>
       <width>1000</width>
       <height>500</height>
@@ -43,7 +43,7 @@
    <widget class="QWidget" name="selectSHAPE" native="true">
     <property name="geometry">
      <rect>
-      <x>169</x>
+      <x>159</x>
       <y>20</y>
       <width>1001</width>
       <height>80</height>
@@ -52,9 +52,9 @@
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>30</x>
        <y>20</y>
-       <width>161</width>
+       <width>141</width>
        <height>41</height>
       </rect>
      </property>
@@ -65,7 +65,7 @@
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>190</x>
        <y>20</y>
        <width>141</width>
        <height>41</height>
@@ -78,7 +78,7 @@
     <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>350</x>
        <y>20</y>
        <width>141</width>
        <height>41</height>
@@ -91,7 +91,7 @@
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>520</x>
+       <x>510</x>
        <y>20</y>
        <width>141</width>
        <height>41</height>
@@ -104,7 +104,7 @@
     <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>680</x>
+       <x>670</x>
        <y>20</y>
        <width>141</width>
        <height>41</height>
@@ -117,7 +117,7 @@
     <widget class="QPushButton" name="pushButton_6">
      <property name="geometry">
       <rect>
-       <x>840</x>
+       <x>830</x>
        <y>20</y>
        <width>141</width>
        <height>41</height>
@@ -131,7 +131,7 @@
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>40</x>
       <y>20</y>
       <width>120</width>
       <height>581</height>
@@ -414,7 +414,7 @@
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>1170</x>
+      <x>1160</x>
       <y>20</y>
       <width>120</width>
       <height>581</height>
