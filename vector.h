@@ -217,11 +217,8 @@ namespace scrumptious{
 		// Post: adds the new element to the front of the vector; increases size by 1
 		void push_front(T newElement){
 			// increases vector size by one; initialize the new element with `newElement`
-			if(space == 0){
-				reserve(8); // reserve space for 8 elements
-			}
-			else if(size == space){
-				reserve(2 * space); // reserve space for 2 * space elements
+			if(space == 0 || size == space){
+				reserve(1); // reserve space for 8 elements
 			}
 			for(int i = size; i > 0; i--){
 				vector[i] = vector[i - 1]; // copy element one position to the right
@@ -409,9 +406,9 @@ namespace scrumptious{
 			}
 
 			// the place to put the value
-			int index = p - vector; // convert iterator to index
+			int index = p - vector+1; // convert iterator to index
 			// copy element one position to the right
-			for(int i = size; i > index + 1; i--){
+			for(int i = size; i > index; i--){
 				vector[i] = vector[i - 1]; // copy element one position to the right
 			}
 			// insert the new value at position p
