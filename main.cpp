@@ -74,13 +74,29 @@ int main(){
 	// test insert before
 	v->insert(v->get_iterator(2), 15);
 
-	std::cout << "Testing insert before\n" << *v << "\n";
+	std::cout << "Testing insert\n" << *v << "\n";
 
 	// test insert after
 
 	v->insert(v->get_iterator(3), 16);
 
+	std::cout << "Testing insert \n" << *v << "\n";
+
+	v->insert_after(v->get_iterator(3), 17);
+
 	std::cout << "Testing insert after\n" << *v << "\n";
+
+	// test insert before
+	v->insert_before(v->get_iterator(3), 18);
+
+	std::cout << "Testing insert before\n" << *v << "\n";
+
+	// test push_front
+	v->push_front(19);
+
+	std::cout << "Testing push_front\n" << *v << "\n";
+	
+
 
 	// delete pointers
 	delete v;
