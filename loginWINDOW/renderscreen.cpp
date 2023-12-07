@@ -1,9 +1,9 @@
-#include "mainscreen.h"
-#include "ui_mainscreen.h"
+#include "renderscreen.h"
+#include "ui_renderscreen.h"
 
 MainScreen::MainScreen(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainScreen)
+    ui(new Ui::RenderScreen)
 {
     ui->setupUi(this);
 }

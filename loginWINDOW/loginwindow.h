@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
-#include "mainscreen.h"
+#include "renderscreen.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }

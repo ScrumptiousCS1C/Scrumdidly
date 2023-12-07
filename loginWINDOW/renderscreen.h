@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 namespace Ui {
-class MainScreen;
+class RenderScreen;
 }
 
 class MainScreen : public QMainWindow
@@ -16,7 +16,7 @@ public:
     ~MainScreen();
 
 private:
-    Ui::MainScreen *ui;
+    Ui::RenderScreen *ui;
 };
 
 #endif // MAINSCREEN_H
