@@ -68,14 +68,15 @@ public:
     // Pre: Object must be initialized (painter != nullptr)
     // Post: Returns const reference to painter's QPen
     //**********************************************************************
-    QPen getPen() const {return painter->pen();}
+    QPen getPen() const {return pen;}
     //**********************************************************************
     // getBrush()
     //______________________________________________________________________
     // Pre: Object must be initialized (painter != nullptr)
     // Post: Returns const reference to painter's QBrush
     //**********************************************************************
-    QBrush getBrush() const {return painter->brush();}
+    QBrush getBrush() const {return brush;}
+
 
     //**********************************************************************
     // getQPainter()
@@ -111,7 +112,7 @@ public:
     // Pre: Object exists, QPen pen is passed in
     // Post: Painter's pen is set to pen
     //**********************************************************************
-    void setPen(const QPen &pen) {painter->setPen(pen);}
+    void setPen(const QPen &pen1) {pen = pen1;}
 
     //**********************************************************************
     // setPenColor(const QColor &color)
@@ -134,7 +135,7 @@ public:
     // Pre: Object exists, QBrush brush is passed in
     // Post: Painter's brush is set to brush
     //**********************************************************************
-    void setBrush(const QBrush &brush) {painter->setBrush(brush);}
+    void setBrush(const QBrush &newbrush) {brush = newbrush;}
 
     //**********************************************************************
     // setBrushColor(const Qt::BrushStyle style)
@@ -162,7 +163,7 @@ public:
     // Pre: Object exists
     // Post: Pure virtual function, draws for every subclass in shape hierarchy
     //**********************************************************************
-    virtual void draw() = 0;
+    virtual void draw(QPainter *externalPainter) = 0;
 
     //**********************************************************************
     // move(const QPoint& translationVector)
@@ -172,18 +173,6 @@ public:
     //**********************************************************************
     virtual void move(const QPoint& translationVector) = 0;
 
-    //**********************************************************************
-    // Set the painter for the shape
-    // setPainter(QPainter *externalPainter)
-    //______________________________________________________________________
-    // Pre: Object exists, QPainter *externalPainter is passed in
-    // Post: Sets the painter for the shape to externalPainter
-    //**********************************************************************
-    void setPainter(QPainter *externalPainter) {
-        if (externalPainter) {
-            painter = externalPainter;
-        }
-    }
 
 private:
     // NOTE:
@@ -200,6 +189,8 @@ private:
     ShapeType shapeType;                            // Shape Type enum
 protected:
     QPainter *painter; //  unique pt                              // Pointer to QPainter object
+    QBrush brush;
+    QPen pen;
 };
 
 #endif // SHAPE_H

@@ -9,34 +9,22 @@ private:
 
 public:
     // Constructor
-    Ellipse() : Shape() {
-        ellipseRect.adjust(600,20,200,88);
-    }
+    Ellipse();
 
-    Ellipse(QPoint p1, QPoint p2) : Shape(5, ShapeType::ellipse) {
-        ellipseRect.adjust(p1.x(), p1.y(), p2.x(), p2.y());
-    }
+    Ellipse(QPoint p1, QPoint p2);
 
     // Implement pure virtual function from base class
-    void draw() override {
-        // Draw the ellipse using the QRect dimensions
-        painter->drawEllipse(ellipseRect);
-    }
+    void draw(QPainter *externalPainter) override;
 
     // Implement pure virtual function from base class
-    void move(const QPoint& translationVector) override {
-        ellipseRect.translate(translationVector.x(), translationVector.y());
-    }
+    void move(const QPoint& translationVector) override;
 
     // Example: Getter for the ellipse dimensions
-    QRect getEllipseRect() const {
-        return ellipseRect;
-    }
+    QRect getEllipseRect() const;
 
     // Example: Setter for the ellipse dimensions
-    void setEllipseRect(const QRect& newRect) {
-        ellipseRect = newRect;
-    }
+    void setEllipseRect(const QRect& newRect);
 };
 
 #endif // ELLIPSE_H
+

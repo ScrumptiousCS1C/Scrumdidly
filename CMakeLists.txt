@@ -29,8 +29,19 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         parser.cpp
         Line.h
         shapes.txt
-        Ellipse.h
+
+
+        Polyline.h
+        Line.cpp
+        Polyline.cpp
+        Polygon.cpp
+        Polygon.h
         Rectangle.h
+        Rectangle.cpp
+        Ellipse.h
+        Ellipse.cpp
+        Text.h
+
 )
 
 # Define target properties for Android with Qt 6 as:

@@ -1,25 +1,30 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef POLYLINE_H
+#define POLYLINE_H
 
 #include "Shape.h"
+#include <QPolygon>
 
-class Rectangle : public Shape {
+class Polyline : public Shape {
 private:
-    QRect rect;  // Private variable specific to Rectangle
+    // Private variable specific to Polyline
+    QPolygon polyline;
 
 public:
-    // Constructor
-    Rectangle(QPoint p1, QPoint p2);
-
-    // Overloaded Constructor with default values
-    Rectangle();
+    //**********************************************************************
+    // Constructors
+    //______________________________________________________________________
+    // Default constructor initializes a sample polyline
+    // Other constructors allow creating polylines with different dimensions
+    //**********************************************************************
+    Polyline();
+    // Constructor taking Vector<QPoint>
+    Polyline(const scrumptious::Vector<QPoint>& pointsVector);
 
     //**********************************************************************
     // draw()
     //______________________________________________________________________
-    // Pre: The Object's painter should be set first
-    //
-    // Post: Draws the rectangle using the specified QPainter and dimensions
+    // Pre: Object exists
+    // Post: Draws the polyline using the specified QPainter and dimensions
     //**********************************************************************
     void draw(QPainter *externalPainter) override;
 
@@ -27,27 +32,26 @@ public:
     // move(const QPoint& translationVector)
     //______________________________________________________________________
     // Pre: Object exists, translationVector is a valid QPoint
-    // Post: Moves the rectangle by the specified translationVector
+    // Post: Moves the polyline by the specified translationVector
     //**********************************************************************
     void move(const QPoint& translationVector) override;
 
-    // Additional functions specific to Rectangle class, if needed
-
     //**********************************************************************
-    // getRectangle() const
+    // getPolyline() const
     //______________________________________________________________________
     // Pre: Object exists
-    // Post: Returns the rectangle dimensions
+    // Post: Returns the QPolygon representing the polyline
     //**********************************************************************
-    QRect getRectangle() const;
+    QPolygon getPolyline() const;
 
     //**********************************************************************
-    // setRectangle(const QRect& newRect)
+    // setPolyline(const QPolygon& newPolyline)
     //______________________________________________________________________
-    // Pre: Object exists, newRect is a valid QRect
-    // Post: Sets the rectangle dimensions to newRect
+    // Pre: Object exists, newPolyline is a valid QPolygon
+    // Post: Sets the polyline to newPolyline
     //**********************************************************************
-    void setRectangle(const QRect& newRect);
+    void setPolyline(const QPolygon& newPolyline);
 };
 
-#endif // RECTANGLE_H
+#endif // POLYLINE_H
+

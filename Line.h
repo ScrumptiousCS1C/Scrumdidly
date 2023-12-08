@@ -14,17 +14,8 @@ public:
     // Default constructor initializes a sample line
     // Another constructor allows creating a line with different dimensions
     //**********************************************************************
-    Line(QPoint p1, QPoint p2)
-        : Shape(1, ShapeType::Line) {
-        line.setP1(p1);
-        line.setP2(p2);
-    }
-
-    Line()
-        : Shape() {
-        line.setP1(QPoint(12, 90));
-        line.setP2(QPoint(45, 67));
-    }
+    Line(QPoint p1, QPoint p2);
+    Line();
 
     //**********************************************************************
     // draw()
@@ -32,9 +23,7 @@ public:
     // Pre: Object exists
     // Post: Draws the line using the specified QPainter and dimensions
     //**********************************************************************
-    void draw() override {
-        painter->drawLine(line);
-    }
+    void draw(QPainter *externalPainter) override;
 
     //**********************************************************************
     // move(const QPoint& translationVector)
@@ -42,9 +31,8 @@ public:
     // Pre: Object exists, translationVector is a valid QPoint
     // Post: Moves the line by the specified translationVector
     //**********************************************************************
-    void move(const QPoint& translationVector) override {
-        line.translate(translationVector.x(), translationVector.y());
-    }
+    void move(const QPoint& translationVector) override;
 };
 
 #endif // LINE_H
+

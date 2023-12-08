@@ -6,6 +6,7 @@
 
 #include <QApplication>
 #include <QLabel>
+#include <QDebug>
 
 int main(int argc, char **argv)
 {
@@ -13,16 +14,18 @@ int main(int argc, char **argv)
     QMainWindow mainWindow;
 
     scrumptious::Vector<Shape*> myShapes = LoadFile();
-
-//    QPoint p1(1, 11);
-//    QPoint p2(11, 1);
-//    Line *some = new Line(p1, p2);
-//    some->setId(5);
-//    myShapes.push_back(some);
+    qInfo() << "Size of vector after parser: " << myShapes.sizeOf();
+    qInfo() << "Looping through vector";
+    for (int i = 0; i < myShapes.sizeOf(); ++i)
+    {
+        qInfo() << "Id       : " << myShapes[i]->getId();
+        qInfo() << "ShapeType: " << myShapes[i]->getShapeType();
+        qInfo() << "Pen      : " << myShapes[i]->getPen();
+    }
 
     QLabel* label = new QLabel(&mainWindow);
 
-    std::string str = std::to_string(myShapes[0]->getId()) + "<-- Shape ID";
+    std::string str = "This is a window";
     label->setText(QString::fromStdString(str));
 
     // Set the label as the central widget of the main window
