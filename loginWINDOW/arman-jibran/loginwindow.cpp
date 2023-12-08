@@ -26,6 +26,7 @@ void MainWindow::on_LOGINBUTTON_clicked()
         QMessageBox::information(this, "ScrumptiousCS1C", "Login Successful!");
         MainScreen *mainscreen = new MainScreen();
         mainscreen->show();
+        this->close();
     }
     else
     {
