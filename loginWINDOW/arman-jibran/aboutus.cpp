@@ -21,8 +21,6 @@ aboutus::~aboutus()
     delete ui;
 }
 
-//https://forms.gle/vsKnN6DGaYzk6x868
-
 void aboutus::on_pushButton_clicked()
 {
     QString link = "https://forms.gle/vsKnN6DGaYzk6x868";
