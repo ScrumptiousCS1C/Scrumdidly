@@ -218,7 +218,7 @@ public:
     void push_front(T newElement){
         // increases vector size by one; initialize the new element with `newElement`
         if(space == 0 || size == space){
-            reserve(1); // reserve space for 8 elements
+            reserve(space + 1); // reserve space for 8 elements
         }
         for(int i = size; i > 0; i--){
             vector[i] = vector[i - 1]; // copy element one position to the right
@@ -234,8 +234,8 @@ public:
     //*************************************************************************
     void push_back(T newElement){
         // increases vector size by one; initialize the new element with `newElement`
-        if(space == 0 || size == space){
-            reserve(1); // reserve space for 8 elements
+        if(space == 0 || size >= space){
+            reserve(space + 1); // reserve space
         }
         vector[size] = newElement; // initialize the new element with `newElement`
         size++; // increase the size by 1
@@ -247,7 +247,7 @@ public:
     // Post: reserves space for the new allocation passed in
     //*************************************************************************
     void reserve(int newAlloc){
-        if(newAlloc > size){
+        if(newAlloc > space){
             T* temp = new T[newAlloc]; // create a temporary array of size `newAlloc`
 
             // copy old elements
@@ -276,7 +276,7 @@ public:
         if(size == 0){
             return nullptr;
         }
-        return &vector[0]; // return an iterator to the first element
+        return vector; // return an iterator to the first element
     }
     //*************************************************************************
     // const begin function
@@ -288,7 +288,7 @@ public:
         if(size == 0){
             return nullptr;
         }
-        return &vector[0]; // return a const iterator to the first element
+        return vector; // return a const iterator to the first element
     }
     //*************************************************************************
     // end function
@@ -300,7 +300,7 @@ public:
         if(size == 0){
             return nullptr;
         }
-        return &vector[size + 1]; // return an iterator to the last element
+        return vector + size; // return an iterator to the last element
     }
     //*************************************************************************
     // const end function
@@ -312,7 +312,7 @@ public:
         if(size == 0){
             return nullptr;
         }
-        return &vector[size+1]; // return a const iterator to the last element
+        return vector + size; // return a const iterator to the last element
     }
     //*************************************************************************
     // insert function
@@ -376,7 +376,7 @@ public:
         // insert a new element elem before p
         // make sure we have space
         if (space == size){
-            reserve(1); // reserve space for 2 * size elements if size > 0
+            reserve(space + 1); // reserve space for 2 * size elements if size > 0
         }
 
         // the place to put the value
@@ -402,7 +402,7 @@ public:
         // insert a new element elem after p
         // make sure we have space
         if (space == size){
-            reserve(1); // reserve space for 2 * size elements if size > 0
+            reserve(space + 1); // reserve space for 2 * size elements if size > 0
         }
 
         // the place to put the value
