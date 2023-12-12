@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/new/parserShapes">
-        <file>shapes.txt</file>
-    </qresource>
-</RCC>
